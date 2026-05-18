@@ -20,7 +20,7 @@ This project employs exploratory data analysis to examine the relationship betwe
 
 ## Project Overview
 
-The goal of this project is to explore relationships between NBA player performance stats and annual salaries using exploratory data analysis and regression modeling techniques. This information could be used to evaluate whether a player's salary is in line with the expected value for a player with their level of performance, gain an understanding of the potential value of a new contract for a player, or identify which kinds of contributions could be undervalued or overvalued by NBA teams. To achieve this goal, I first inspected the distributions of player stats such as poins per game; then, I examined relationships between different performance metrics and a player's salary. I then created and evaluated two linear regression models for a player's salary with one created manually and the other one using sequential feature selection.
+The goal of this project is to explore relationships between NBA player performance stats and annual salaries using exploratory data analysis and regression modeling techniques. This analysis can be used to evaluate whether player salaries align with expected on-court performance, estimate potential contract value, and identify potentially undervalued or overvalued player contributions. To achieve this goal, I first inspected the distributions of player stats such as points per game; then, I examined relationships between different performance metrics and a player's salary. I then created and evaluated two linear regression models for a player's salary with one created manually and the other one using sequential feature selection.
 
 ---
 
@@ -81,7 +81,7 @@ I also made a set of density plots for the offensive and defensive performance s
 
 Similar to the offensive distributions, the distributions of defensive stats vary noticeably. Rebounds per game and steals per game have relatively wide distributions while steal-turnover ratio and blocks per game have much tighter distributions.
 
-My next step was to plot the interactions between player salaries and different variables that I predicted would be important for estimating player salary. Based on the scatter plots, points per game has the strongest correlation with player salary. Rebounds per game and steals per game look to have a weak corrlation with salary while 3pt percentage, assist-turnover ratio, and blocks per game do not look to have a significant connection to player salary.
+My next step was to plot the interactions between player salaries and different variables that I predicted would be important for estimating player salary. Based on the scatter plots, points per game has the strongest correlation with player salary. Rebounds per game and steals per game look to have a weak correlation with salary while 3pt percentage, assist-turnover ratio, and blocks per game do not look to have a significant connection to player salary.
 
 I made a correlation heatmap with seaborn to visualize the interactions between variables. I was particularly interested in how other variables are correlated with salary. The metrics that proved to be most correlated with a player's salary were minutes per game, assists per game, rebounds per game, steals per game, and especially points per game. Blocks per game are seemingly valued less than these other stats, as they had only roughly half as high of a correlation with salary compared to metrics like steals or rebounds per game. This heatmap also shows some other notable correlations, such as the strong correlation between minutes per game and other game-level stats such as points per game.
 
@@ -105,9 +105,9 @@ Correlation Heatmap:
 
 ## Modeling
 
-I used the player performance metrics to create a multiple linear regression model with scikit-learn for a player's salary. After experimenting to find some unhelpful variables, I removed stats which were not formatted as ratios, which gave usable results. This model had an adjusted R^2 value of around 0.521, and therefore explained most of the variation in player salaries.
+I used the player performance metrics to create a multiple linear regression model with scikit-learn for a player's salary. After experimenting to find some unhelpful variables, I removed stats which were not formatted as ratios, which gave usable results. This model had an adjusted R² value of around 0.521, and therefore explained most of the variation in player salaries.
 
-I also used automated feature selecting to find a model which was slightly more predictive than the model I manually created. I removed the "Guaranteed" and "MIN" columns: Guaranteed was too strongly correlated with salary as a part of the player's contract and not a metric and MIN counted total minutes over the courses of the season and yielded weaker models when the feature selector chose it over MPG. I experimented with a few configurations for the feature selector and landed on 3 features selected in a backwards direction with an adjusted R^2 value of about 0.538. This model used 3 point percentage, points per game, and minutes per game as predictors of salary.
+I also used automated feature selecting to find a model which was slightly more predictive than the model I manually created. I removed the "Guaranteed" and "MIN" columns: Guaranteed was too strongly correlated with salary as a part of the player's contract and not a metric and MIN counted total minutes over the courses of the season and yielded weaker models when the feature selector chose it over MPG. I experimented with a few configurations for the feature selector and landed on 3 features selected in a backwards direction with an adjusted R² value of about 0.538. This model used 3 point percentage, points per game, and minutes per game as predictors of salary.
 
 Finally, I created diagnostic plots to check the regression model assumptions. The QQ plot has a strongly linear pattern that indicates that the normality of residuals assumption is clearly met. The constant variance assumption is a bit suspect, as the points at the edges of the residuals vs. fitted plot look to have very slightly less variance than those in the middle and there is a minor funnel shape in the scale-location plot. The linear relationship assumption also looks to be somewhat problematic as there is a gradual but definitely noticeable curve to the points of the residuals vs. fitted plot with higher values to the left and lower values to the right. It is also worth noting that the influence plot shows a few outliers in the data. Finally, the independence of observations assumption is likely not completely met, as players on the same teams will likely have some influence on each others' performances. Overall, while there are definitely some issues with the linear modeling assumptions and a linear model may not be perfect to capture the multifaceted nature of contract value, the issues seem to be minor enough to acceptably model this relationship linearly.
 
@@ -117,14 +117,22 @@ Finally, I created diagnostic plots to check the regression model assumptions. T
 
 Intuitively, it makes sense that player performances and player salaries are linked. However, by exploring player data from the 2025-26 NBA season and using regression modeling, I have highlighted the player metrics that have the greatest connection with the players' salaries and have constructed a model to estimate what a player's salary could be based upon their performances.
 
+| Model | Features | Adjusted R² |
+|------|------|------|
+| Manual Feature Selection | Multiple performance metrics | 0.521 |
+| Sequential Feature Selection | PPG, MPG, 3P% | 0.538 |
+
 ### Example Predictions
 
-
+| Player | Predicted Salary  | Actual Salary |
+|------|------|------|
+| Manual Feature Selection | Multiple performance metrics | 0.521 |
+| Sequential Feature Selection | PPG, MPG, 3P% | 0.538 |
 
 ### Drawbacks of Analysis
 
  - With a somewhat small total 455 of eligible players for analysis, it was difficult to remove many features from the model without overfitting. The sequential feature selector, for example, chose different features when different random seeds were used. However, there are methods to remedy this such as k-fold cross validation.
- - Players' performances are linked with their team's performances which could greatly alter the relatonship between their performance and salary.
+ - Players' performances are linked with their team's performances which could greatly alter the relationship between their performance and salary.
  - While the minutes played stat was used in modeling, it could be argued that this is not necessarily a measure of a player's impact on the court and instead is a stat largely controlled by a player's coach. However, it still likely generally reflects a player's importance to their team as more impactful players will likely be given more minutes. This could also help to account for less "measurable" contributions that a player makes to their team.
  - A handful (<20) of players lacked salary data in the contract database.
 
@@ -132,8 +140,21 @@ Intuitively, it makes sense that player performances and player salaries are lin
 
  - The salary distribution was skewed to the right, reflecting that the majority of players make a similar amount, less than $10 million per year, while some highly-paid players make almost $60 million per year.
  - Points per game is linked much more heavily to a player's salary than any other stat.
- - Games Played, Assist-Tunover Ratio, and 3pt FG Percentage had little correlation with player salary.
+ - Games Played, Assist-Turnover Ratio, and 3pt FG Percentage had little correlation with player salary.
  - A small majority of the variation in a players salary can be explained by using a linear regression model with a player's performance statistics.
+
+---
+
+## Skills Demonstrated
+
+- Exploratory Data Analysis (EDA)
+- Data Cleaning and Preprocessing
+- Data Visualization
+- Multiple Linear Regression
+- Feature Selection
+- Regression Diagnostics
+- Statistical Analysis
+- Predictive Modeling
 
 ---
 
@@ -142,7 +163,7 @@ Intuitively, it makes sense that player performances and player salaries are lin
 Clone the repository:
 
 ```bash
-git clone https://https://github.com/a-g-mikulsky/NBA-Salary-and-Performance-Analysis-2025-2026.git
+git clone https://github.com/a-g-mikulsky/NBA-Salary-and-Performance-Analysis-2025-2026.git
 ```
 
 Install dependencies:
