@@ -117,6 +117,24 @@ Finally, I created diagnostic plots to check the regression model assumptions. T
 
 Intuitively, it makes sense that player performances and player salaries are linked. However, by exploring player data from the 2025-26 NBA season and using regression modeling, I have highlighted the player metrics that have the greatest connection with the players' salaries and have constructed a model to estimate what a player's salary could be based upon their performances.
 
+### Example Predictions
+
+
+
+### Drawbacks of Analysis
+
+ - With a somewhat small total 455 of eligible players for analysis, it was difficult to remove many features from the model without overfitting. The sequential feature selector, for example, chose different features when different random seeds were used. However, there are methods to remedy this such as k-fold cross validation.
+ - Players' performances are linked with their team's performances which could greatly alter the relatonship between their performance and salary.
+ - While the minutes played stat was used in modeling, it could be argued that this is not necessarily a measure of a player's impact on the court and instead is a stat largely controlled by a player's coach. However, it still likely generally reflects a player's importance to their team as more impactful players will likely be given more minutes. This could also help to account for less "measurable" contributions that a player makes to their team.
+ - A handful (<20) of players lacked salary data in the contract database.
+
+### Takeaways
+
+ - The salary distribution was skewed to the right, reflecting that the majority of players make a similar amount, less than $10 million per year, while some highly-paid players make almost $60 million per year.
+ - Points per game is linked much more heavily to a player's salary than any other stat.
+ - Games Played, Assist-Tunover Ratio, and 3pt FG Percentage had little correlation with player salary.
+ - A small majority of the variation in a players salary can be explained by using a linear regression model with a player's performance statistics.
+
 ---
 
 ## How to Run
