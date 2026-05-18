@@ -26,7 +26,10 @@ The goal of this project is to explore relationships between NBA player performa
 
 ## Key Insights
 
-
+ - Player performance stats are not valued equally as some stats have a much stronger correlation with salary than other, but almost all performance metrics have at least some correlation with salary.
+ - Points per game is overwhelmingly the player stat that is most associated with a player's salary.
+ - Though it is not a perfect representation of the relationship between NBA player performance metrics and salary, a linear regression model works reasonably well to predict salary based on in-game stats.
+ - Over half of the variation in player salaries can be explained by a linear regression model.
 
 ---
 
@@ -104,13 +107,17 @@ Correlation Heatmap:
 
 ## Modeling
 
+I used the player performance metrics to create a multiple linear regression model with scikit-learn for a player's salary. After experimenting to find some unhelpful variables, I removed stats which were not formatted as ratios, which gave usable results. This model had an adjusted R^2 value of around 0.521, and therefore explained most of the variation in player salaries.
 
+I also used automated feature selecting to find a model which was slightly more predictive than the model I manually created. I removed the "Guaranteed" and "MIN" columns: Guaranteed was too strongly correlated with salary as a part of the player's contract and not a metric and MIN counted total minutes over the courses of the season and yielded weaker models when the feature selector chose it over MPG. I experimented with a few configurations for the feature selector and landed on 3 features selected in a backwards direction with an adjusted R^2 value of about 0.538. This model used 3 point percentage, points per game, and minutes per game as predictors of salary.
+
+Finally, I created diagnostic plots to check the regression model assumptions. The QQ plot has a strongly linear pattern that indicates that the normality of residuals assumption is clearly met. The constant variance assumption is a bit suspect, as the points at the edges of the residuals vs. fitted plot look to have very slightly less variance than those in the middle and there is a minor funnel shape in the scale-location plot. The linear relationship assumption also looks to be somewhat problematic as there is a gradual but definitely noticeable curve to the points of the residuals vs. fitted plot with higher values to the left and lower values to the right. It is also worth noting that the influence plot shows a few outliers in the data. Finally, the independence of observations assumption is likely not completely met, as players on the same teams will likely have some influence on each others' performances. Overall, while there are definitely some issues with the linear modeling assumptions and a linear model may not be perfect to capture the multifaceted nature of contract value, the issues seem to be minor enough to acceptably model this relationship linearly.
 
 ---
 
 ## Results
 
-
+Intuitively, it makes sense that player performances and player salaries are linked. However, by exploring player data from the 2025-26 NBA season and using regression modeling, I have highlighted the player metrics that have the greatest connection with the players' salaries and have constructed a model to estimate what a player's salary could be based upon their performances.
 
 ---
 
