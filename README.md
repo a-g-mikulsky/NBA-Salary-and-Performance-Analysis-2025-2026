@@ -195,7 +195,7 @@ NBA-Salary-and-Performance-Analysis-2025-2026/
 │
 ├── Data/
 ├── Images/
-├── Notebooks/
+├── nba_stats.ipynb
 ├── README.md
 └── requirements.txt
 ```
