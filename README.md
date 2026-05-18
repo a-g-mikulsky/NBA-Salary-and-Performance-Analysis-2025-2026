@@ -81,6 +81,10 @@ Combined Dataset Shape: 455 rows, 30 columns
 - Computed the player salary quartiles and made a density plot of salaries to get a general understanding of the salary distribution.
 - Distribution is skewed right with the majority of salaries falling below $10 million and a relatively small portion of salaries above $20 million.
 
+Salary Density Plot:
+
+![NBA Salary Density Plot](Images/nba_salary_density.png)
+
 - Made a set of density plots for the offensive and defensive performance stats to understand the distributions of player metrics.
   - Distributions for each stat vary in spread but are all generally unimodal.
   - Most of the offensive distributions are skewed right like the salary distribution, but free throw percentage and three point percentage are slightly skewed left.
@@ -91,25 +95,18 @@ Combined Dataset Shape: 455 rows, 30 columns
 - Rebounds per game and steals per game look to have a weak correlation with salary.
 - 3pt percentage, assist-turnover ratio, and blocks per game do not look to have a significant connection to player salary.
 
+Scatterplots with relationship between salary and performance statistics:
+
+![Relationship Scatterplots](Images/nba_scatters.png)
+
 - Made correlation heatmap with seaborn to visualize correlations between variables.
 - The metrics that proved to be most correlated with a player's salary were minutes per game, assists per game, rebounds per game, steals per game, and especially points per game.
 - Blocks per game are seemingly valued less than these other stats.
 - Strong correlation between minutes per game and other game-level stats such as points per game.
 
-### EDA Images
-
-Salary Density Plot:
-
-![NBA Salary Density Plot](Images/nba_salary_density.png)
-
-Scatterplots with relationship between salary and performance statistics:
-
-![Relationship Scatterplots](Images/nba_scatters.png)
-
 Correlation Heatmap:
 
 ![Correlation Heatmap](Images/nba_heatmap.png)
-
 
 ---
 
@@ -149,7 +146,7 @@ Intuitively, it makes sense that player performances and player salaries are lin
 | Model | Features | Adjusted R² | RMSE |
 |------|------|------|------|
 | Manual Feature Selection | Multiple performance metrics | 0.521 | $8,836,562 |
-| Sequential Feature Selection | PPG, MPG, 3P% | 0.575 | $8,536,050 |
+| Sequential Feature Selection | MPG, PPG, APG,  | 0.575 | $8,536,050 |
 
 ### Example Predictions
 
