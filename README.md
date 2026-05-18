@@ -225,6 +225,14 @@ jupyter notebook
 
 ---
 
+## Future Improvements
+
+- Transform player salaries to a log-scale
+- Implement k-fold cross validation to improve model robustness
+- Incorporate advanced metrics such as PER
+- Incorporate more recent NBA seasons
+- Create dashboard-style visualization
+
 ## Author
 
 Aiden Mikulsky | Data science student at the University of Wisconsin-Madison
