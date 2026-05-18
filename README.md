@@ -43,8 +43,6 @@ The dataset is a combination of a salary dataset and a player performance datase
 - Rows/Columns: 530/26
 - Includes player names and teams as well as performance statistics such as games played, minutes played, points scored, rebounds, assists, steals, blocks, shooting, percentages, turnovers, efficiency rating, and more.
 
----
-
 ### Salary Dataset:
 
 - [2025-26 NBA Player Contracts](https://www.basketball-reference.com/contracts/players.html)
