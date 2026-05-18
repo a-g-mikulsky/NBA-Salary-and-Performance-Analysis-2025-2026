@@ -80,6 +80,7 @@ Combined Dataset Shape: 455 rows, 30 columns
 
 - Computed the player salary quartiles and made a density plot of salaries to get a general understanding of the salary distribution.
 - Distribution is skewed right with the majority of salaries falling below $10 million and a relatively small portion of salaries above $20 million.
+- Dotted lines represent minimum and maximum salaries
 
 Salary Density Plot:
 
