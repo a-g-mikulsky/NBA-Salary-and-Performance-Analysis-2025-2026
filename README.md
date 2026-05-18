@@ -110,5 +110,5 @@ Aiden Mikulsky
 
 Data science student at the University of Wisconsin-Madison
 
-\- LinkedIn: www.linkedin.com/in/aiden-mikulsky-ab226a337
+- LinkedIn: www.linkedin.com/in/aiden-mikulsky-ab226a337
 - Email: aidenmiku920@icloud.com
