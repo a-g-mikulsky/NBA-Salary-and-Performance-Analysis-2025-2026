@@ -115,7 +115,7 @@ Correlation Heatmap:
 
 ## Modeling
 
-I used the player performance metrics to create a multiple linear regression model with scikit-learn for a player's salary. After experimenting to find some unhelpful variables, I removed stats which were not formatted as ratios, which gave usable results. This model had an adjusted R² value of around 0.521, and therefore explained more than half of the variation in player salaries.
+I used the player performance metrics to create a multiple linear regression model with scikit-learn for a player's salary. After experimenting to find some unhelpful variables, I removed stats which were not formatted as ratios, which gave usable results. This model had an adjusted R² value of around 0.521, and therefore explained more than half of the variation in player salaries. It had an RMSE of $8,836,562.
 
 Data was split into training (75%) and testing (25%) datasets to evaluate model performance on unseen data.
 
@@ -126,9 +126,11 @@ Data was split into training (75%) and testing (25%) datasets to evaluate model 
 - The data for this new model did not include "Guaranteed" or "MIN".
   - Guaranteed was too correlated with salary as an aspect of the player's contract.
   - MIN counted total minutes over the courses of the season and yielded weaker models when the feature selector chose it over MPG.
-- Achieved adjusted R² of around 0.538
-- Model uses 3-point percentage, points per game, minutes per game
+- Achieved adjusted R² of around 0.575.
+- RMSE of $8536050
+- Model uses 3-point percentage, points per game, assists per game, rebounds per game, and minutes per game
 - Somewhat small pool of players and limited number of features means that the model is vulnerable to overfitting.
+  - When different random seeds were used to split the dataset, the selector would choose different features.
 
 ### Regression Diagnostics
 
@@ -147,9 +149,7 @@ Intuitively, it makes sense that player performances and player salaries are lin
 | Model | Features | Adjusted R² | RMSE |
 |------|------|------|------|
 | Manual Feature Selection | Multiple performance metrics | 0.521 | $8,836,562 |
-| Sequential Feature Selection | PPG, MPG, 3P% | 0.538 | $8,656,393 |
-
-Both models performed similarly, however the manually-selected model performs more consistently when the random seed of the test-train split changes.
+| Sequential Feature Selection | PPG, MPG, 3P% | 0.575 | $8,536,050 |
 
 ### Example Predictions
 
