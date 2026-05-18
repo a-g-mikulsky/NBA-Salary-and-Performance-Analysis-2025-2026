@@ -68,17 +68,25 @@ The dataset is a combination of a salary dataset and a player performance datase
 
 ## Exploratory Data Analysis
 
+
+
 ---
 
 ## Modeling
+
+
 
 ---
 
 ## Results
 
+
+
 ---
 
 ## Key Insights
+
+
 
 ---
 
@@ -106,9 +114,7 @@ jupyter notebook
 
 ## Author
 
-Aiden Mikulsky
-
-Data science student at the University of Wisconsin-Madison
+Aiden Mikulsky | Data science student at the University of Wisconsin-Madison
 
 - LinkedIn: www.linkedin.com/in/aiden-mikulsky-ab226a337
 - Email: aidenmiku920@icloud.com
