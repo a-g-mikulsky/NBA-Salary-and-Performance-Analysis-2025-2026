@@ -225,7 +225,7 @@ jupyter notebook
 
 ## Future Improvements
 
-- Transform player salaries to a log-scale
+- Transform player salaries to a log-scale for more accurate modeling
 - Implement k-fold cross validation to improve model robustness
 - Incorporate advanced metrics such as PER
 - Incorporate more recent NBA seasons
